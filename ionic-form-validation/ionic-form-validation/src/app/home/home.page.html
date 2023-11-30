@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Student Registration Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+
+    <!-- ---------------First name Field --------------------->
+<ion-item lines="full">
+  <ion-label position="floating">First Name</ion-label>
+  <ion-input formControlName="firstname" type="text" aria-label="firstname"></ion-input>
+</ion-item>
+
+<!-- First Name error handling -->
+<div class="ion-padding" *ngIf="ionicForm.controls['firstname'].touched && ionicForm.controls['firstname'].invalid">
+  <div class="ion-padding" *ngIf="ionicForm.controls['firstname'].errors?.required">
+    <ion-text color="danger">First name is required.</ion-text>
+  </div>
+  <div class="ion-padding" *ngIf="ionicForm.controls['firstname'].errors?.minlength">
+    <ion-text color="danger">First Name should be at least 2 characters long.</ion-text>
+  </div>
+  <div class="ion-padding" *ngIf="ionicForm.controls['firstname'].errors?.pattern">
+    <ion-text color="danger">First Name should contain only letters.</ion-text>
+  </div>
+</div>
+
+<!-- ---------------last name Field --------------------->
+<ion-item lines="full">
+  <ion-label position="floating">Last Name</ion-label>
+  <ion-input formControlName="lastname" type="text" aria-label="lastname"></ion-input>
+</ion-item>
+
+<!-- last name error handling -->
+<div *ngIf="ionicForm.controls['lastname'].touched && ionicForm.controls['lastname'].invalid">
+  <div class="ion-padding" *ngIf="ionicForm.controls['lastname'].errors?.required">
+    <ion-text color="danger">Last Name is required.</ion-text>
+  </div>
+  <div class="ion-padding" *ngIf="ionicForm.controls['lastname'].errors?.minlength">
+    <ion-text color="danger">Last Name should be at least 2 characters long.</ion-text>
+  </div>
+  <div class="ion-padding" *ngIf="ionicForm.controls['lastname'].errors?.pattern">
+    <ion-text color="danger">Last Name should contain only letters.</ion-text>
+  </div>
+</div>
+
+<!-- ---------------Email Field --------------------->
+<ion-item lines="full">
+  <ion-label position="floating">Email</ion-label>
+  <ion-input formControlName="email" aria-label="Email" type="email"></ion-input>
+</ion-item>
+
+<!-- Email error handling -->
+<div *ngIf="ionicForm.controls['email'].touched && ionicForm.controls['email'].invalid">
+  <div class="ion-padding" *ngIf="ionicForm.controls['email'].errors?.required">
+    <ion-text color="danger">Email is required.</ion-text>
+  </div>
+  <div class="ion-padding" *ngIf="ionicForm.controls['email'].errors?.pattern">
+    <ion-text color="danger">Please provide valid email.</ion-text>
+  </div>
+</div>
+
+<!-- ---------------Mobile Field --------------------->
+<ion-item lines="full">
+  <ion-label position="floating">Mobile</ion-label>
+  <ion-input maxlength="10" formControlName="mobile" type="text" aria-label="Mobile" required></ion-input>
+</ion-item>
+
+<!-- Mobile error handling -->
+<div *ngIf="ionicForm.controls['mobile'].touched && ionicForm.controls['mobile'].invalid">
+  <div class="ion-padding" *ngIf="ionicForm.controls['mobile'].errors?.required">
+    <ion-text color="danger">Mobile number is required.</ion-text>
+  </div>
+  <div class="ion-padding" *ngIf="ionicForm.controls['mobile'].errors?.pattern">
+    <ion-text color="danger">Only numerical values allowed.</ion-text>
+  </div>
+</div>
+
+<!-- --------------- Submit button --------------------->
+<ion-row>
+  <ion-col>
+    <ion-button [color]="isFormValid ? 'success' : 'danger'" type="submit" expand="block">Submit</ion-button>
+  </ion-col>
+</ion-row>
+
+
+  </form>
+</ion-content>
